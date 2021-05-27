@@ -1,6 +1,10 @@
 /* =============
     Typography
 ============= */
+@font-face{
+    font-family: "Cute'n'Cuddly";
+    src: url('../img/CuteNCuddly.ttf') format('truetype');
+}
 body{
     font-family: 'Montserrat', sans-serif;
 }
