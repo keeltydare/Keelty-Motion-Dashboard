@@ -1,67 +1,103 @@
-//IMPORTS
 import { gsap } from "gsap";
-import { GSDevTools } from "gsap/GSDevTools";
-
-//register Plugins
-gsap.registerPlugin(GSDevTools);
-
-//**** SELECT ELEMENTS without jQuery ****\\
-
-// jQuery, all instances of .box
-//$(".box");
-
-// first instance of .box
-//document.querySelector(".box");
-
-// all instances of .box
-//document.querySelectorAll(".box");
+import {MotionPathPlugin} from "gsap/MotionPathPlugin";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 
 
-//page ready listener
+gsap.registerPlugin(MotionPathPlugin, DrawSVGPlugin);
+
+
+
+
 let ready = (callback) => {
   if (document.readyState != "loading") callback();
   else document.addEventListener("DOMContentLoaded", callback);
 }
 
 ready(() => {
-  //add tools
-  //GSDevTools.create();
 
-  /* add your code here */
   let mainTL = gsap.timeline({id:"main"});
+  //let PERC = {num:0};
 
+  //let PERC_num = document.querySelector("#percentage_txt tspan");
+ // console.log(PERC_num);
+
+  //function percentHandler(){
+  
+   // PERC_num.textContent=PERC.num;
+  
+  //}
 
   function init(){
-    //***********  fadeInTL init ****************
+    //***********  logoTL init ****************
+    gsap.set(["#vw-logo", "#barbie-logo"], {scale:0, transformOrigin:"center center", y:334});
+    gsap.set("#background", {fill:"#000000"});
+    gsap.set("#vw", {fill:"#000000"});
+    gsap.set("#vw-back", {fill:"#fff"});
+    gsap.set("#vw-petals", {fill:"none", drawSVG:false});
+   
+    //*********** frameTL init ****************
+gsap.set("#spedometer", {display:"none"});
+gsap.set("#fuel-gauge", {display:"none"});
+gsap.set("#rpm", {display:"none"});
+gsap.set("#date-time", {display:"none"});
+gsap.set("#odometer", {display:"none"});
+gsap.set("#music", {display:"none"});
+gsap.set("#call-ken-button", {display:"none"});
+gsap.set("#prndl", {display:"none"});
+gsap.set("#gps-button", {display:"none"});
+gsap.set("#temperature", {display:"none"});
+gsap.set("#weather", {display:"none"});
 
-    //*********** zoomTL init ****************
+    //*********** pinkFillTL init ****************
 
-    //*********** spaceshipTL init ****************
+    //*********** detailsTL init ****************
 
-    //*********** liftOffTL init ****************
-
-    //*********** flightTL init ****************
-
-    //*********** moonLandingTL init ****************
+    //*********** fmotionTL init ****************
 
 
   }
 
   //Nested Timelines
-  //***********  fadeInTL  ****************
-  function fadeInTL(){
+  //***********  logoTL  ****************
+  function logoTL(){
+    let tl = gsap.timeline();
+    tl.to("#vw-logo", {scale:3, duration:1, ease:"back.out"})
+    .to("#barbie-logo", {scale:6, duration:2, ease:"elastic.out"}, "barbie")
+    .to("#vw", {fill:"#ff0099", duration:1}, "barbie")
+    .to("#vw-back", {fill:"#63e3fa", duration:1}, "barbie")
+    .to("#background", {fill:"#003559", duration:1}, "barbie")
+    .to("#vw-logo", {y:65, scale:1, duration:1}, "barbie")
+    .to("#vw-petals", {display:"block", duration:2, fill:"#f0ee4f", drawSVG:true, ease:"power1.out"}, "flower")
+    .to("#barbie-logo", {scale:1, duration:1, y:8 }, "flower+=0.5")
 
+    ;
+    return tl;
   }
 
-  //*********** zoomTL ****************
+  //*********** frameTL ****************
+  function frameTL(){
+    let tl = gsap.timeline();
 
-  //*********** spaceshipTL ****************
+    return tl;
+  }
+  //*********** pinkFillTL ****************
+  function pinkFillTL(){
+    let tl = gsap.timeline();
 
-  //*********** liftOffTL ****************
+    return tl;
+  }
+  //*********** detailsTL ****************
+  function detailsTL(){
+    let tl = gsap.timeline();
 
-  //*********** flightTL ****************
+    return tl;
+  }
+  //*********** motionTL ****************
+  function motionTL(){
+    let tl = gsap.timeline();
 
-  //*********** moonLandingTL ****************
+    return tl;
+  }
 
 
   //1. set initial properties
@@ -72,10 +108,14 @@ ready(() => {
 
   //3. BUILD Main timeline
 //  mainTL.add(fadeInTL())
+mainTL.add(logoTL())
+.add(frameTL())
+.add(pinkFillTL())
+.add(detailsTL())
+.add(motionTL())
 
-
-  //;//tl END
-
+;//tl END
+ 
 
 
 

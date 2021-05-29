@@ -2,8 +2,9 @@
     Typography
 ============= */
 @font-face{
-    font-family: "Cute'n'Cuddly";
-    src: url('../img/CuteNCuddly.ttf') format('truetype');
+    font-family: 'Cute-n-Cuddly';
+    src: url('../img/cute-n-cuddly.ttf') format('truetype');
+    src: url('../img/cute-n-cuddly.otf') format('opentype');
 }
 body{
     font-family: 'Montserrat', sans-serif;

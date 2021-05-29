@@ -27,12 +27,20 @@
 		"oF": 0,
 		"oS": 3
 		},
-	"/deploy/img/CuteNCuddly.ttf": {
+	"/deploy/img/cute-n-cuddly.otf": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/deploy/img/CuteNCuddly.ttf",
+		"oAP": "/deploy/img/cute-n-cuddly.otf",
+		"oF": 0
+		},
+	"/deploy/img/cute-n-cuddly.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/deploy/img/cute-n-cuddly.ttf",
 		"oF": 0
 		},
 	"/deploy/index.html": {
