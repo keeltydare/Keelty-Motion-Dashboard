@@ -14,16 +14,21 @@ let ready = (callback) => {
 }
 
 ready(() => {
+let mainTL = gsap.timeline({id:"main"});
+ 
+  let speed = {num:0};
+  let speed_num = document.querySelector("#mph-number tspan");
+  console.log(speed_num);
 
-  let mainTL = gsap.timeline({id:"main"});
-  // let PERC = {num:0};
+  let rpm = {num:0};
+  let rpm_num = document.querySelector("#rpm-number tspan");
+  console.log(rpm_num);
 
-  // let PERC_num = document.querySelector("#temp-number");
-  // console.log(PERC_num);
+  let mi = {num:0};
+  let mi_num = document.querySelector("#miles tspan");
+  console.log(mi_num);
+  
 
-  // function percentHandler(){
-  //  PERC_num.textContent=PERC.num;
-  //  }
 
   function init(){
     //***********  logoTL init ****************
@@ -36,8 +41,7 @@ ready(() => {
     //*********** frameTL init ****************
     gsap.set(["#speed-petals-frame", "#speed-screen-frame", "#fuel-frame-petals", "#fuel-screen-frame", "#rpm-petals-frame", "#rpm-screen-frame", "#temp-bubble-frame", "#weather-frame", "#music-frame"], {drawSVG:false, alpha:0});
     gsap.set(["#speed-petals-frame", "#fuel-frame-petals", "#rpm-petals-frame"], {transformOrigin:"center center", scale:0});
-    gsap.set(["#speed-petals", "#fuel-petals", "#rpm-petals"], {alpha:0});
-    gsap.set(["#fuel-1", "#fuel-2","#fuel-3","#fuel-4","#fuel-5","#fuel-6","#fuel-7","#fuel-8"], {scale:0,  transformOrigin:"center center"})
+    gsap.set(["#fuel-1", "#fuel-2","#fuel-3","#fuel-4","#fuel-5","#fuel-6","#fuel-7","#fuel-8", "#speed-1", "#speed-2", "#speed-3", "#speed-4", "#speed-5", "#speed-6", "#speed-7", "#speed-8", "#speed-9", "#speed-10", "#speed-11", "#speed-12", "#speed-13", "#speed-14", "#speed-15", "#speed-16", "#rpm-1", "#rpm-2", "#rpm-3", "#rpm-4", "#rpm-5", "#rpm-6"], {scale:0,  transformOrigin:"center center"});
     gsap.set(["#promiscuous", "#glamorous", "#beautiful-girls", "#barbie-girl"], {transformOrigin:"center right", scale:0});
     gsap.set(["#P", "#R", "#N", "#D", "#L"], {alpha:0, transformOrigin:"center center"});
     gsap.set( "#selection-button", {scale:0, transformOrigin:"center center"});
@@ -51,6 +55,8 @@ ready(() => {
     gsap.set("#odometer-frame", {drawSVG:false, alpha:0});
     gsap.set(["#mi", "#miles", "#gps-frame", "#gps", "#phone-frame", "#call-ken", "#full-frame", "#empty-frame", "#mph", "#rpm-number", "#mph-number",  "#gas-tank", "#rpm-figure"], {scale:0, transformOrigin:"center center"});
     gsap.set(["#phone", "#gps-bubble", "#rpm-screen", "#speed-screen", "#fuel-screen"], {alpha:0});
+    gsap.set(["#mph-number tspan", "#rpm-number tspan", "#miles tspan"], {textAnchor:"middle"});
+    
    
     //*********** motionTL init ****************
 
@@ -127,6 +133,7 @@ ready(() => {
     let tl = gsap.timeline();
     tl.to("#odometer-frame", {alpha:1, drawSVG:true, duration:1})
     .to(["#miles", "#mi"], {scale:1, duration:0.5}, "-=0.5")
+    .to(mi, {duration:3, num:"+=100000", roundProps:"num", onUpdate:milesHandler, ease:"expo"})
     .to(["#phone", "#gps-bubble"], {alpha:1, duration:1}, "-=0.5")
     .to(["#call-ken", "#gps"], {scale:1, duration:0.5}, "-=0.5")
     .to("#glamorous", {scale:1, duration:1}, "-=0.5")
@@ -141,18 +148,14 @@ ready(() => {
   function motionTL(){
     let tl = gsap.timeline();
     tl.to("#fuel-petals", {alpha:1})
-    .to("#fuel-1", {scale:1, duration:0.5, ease:"power1.out"})
-    .to("#fuel-2", {scale:1, duration:0.5, ease:"power1.out"})
-    .to("#fuel-3", {scale:1, duration:0.5, ease:"power1.out"})
-    .to("#fuel-4", {scale:1, duration:0.5, ease:"power1.out"})
-    .to("#fuel-5", {scale:1, duration:0.5, ease:"power1.out"})
-    .to("#f-forward", {transformOrigin:"center center", alpha:0.8, fill:"#63e3fa", yoyo:true, duration:1, repeat:1}, "glamorous")
+    .to(["#fuel-1", "#fuel-2", "#fuel-3", "#fuel-4", "#fuel-5"], {scale:1, stagger:{amount:1}, ease:"power1.out"})
+    .to("#f-forward", {transformOrigin:"center center", fill:"#63e3fa", yoyo:true, duration:1, repeat:1}, "glamorous")
     .to("#glamorous", {transformOrigin:"center left", scale:0, duration:0.5}, "glamorous")
     .to("#promiscuous", {scale:1, duration:0.5}, "glamorous+=0.5")
-    .to("#f-forward", {transformOrigin:"center center", alpha:0.8, fill:"#63e3fa", yoyo:true, duration:1, repeat:1}, "beautifulGirls")
+    .to("#f-forward", {transformOrigin:"center center", fill:"#63e3fa", yoyo:true, duration:1, repeat:1}, "beautifulGirls")
     .to("#promiscuous", {transformOrigin:"center left", scale:0, duration:0.5}, "beautifulGirls")
     .to("#beautiful-girls", {scale:1, duration:0.5}, "beautifulGirls+=0.5")
-    .to("#f-forward", {transformOrigin:"center center", alpha:0.8, fill:"#63e3fa", yoyo:true, duration:1, repeat:1}, "barbieGirl")
+    .to("#f-forward", {transformOrigin:"center center", fill:"#63e3fa", yoyo:true, duration:1, repeat:1}, "barbieGirl")
     .to("#beautiful-girls", {transformOrigin:"center left", scale:0, duration:0.5}, "barbieGirl")
     .to("#barbie-girl", {scale:1, duration:0.5}, "barbieGirl+=0.5")
     .to("#selection-button", {
@@ -166,17 +169,26 @@ ready(() => {
     }, "gear-change")
     .to("#P", {scale:1, fill:"#63e3fa", ease:"back.out", duration:0.5}, "gear-change")
     .to("#D", {scale:1.5, fill:"#ffcce7", ease:"back.out", duration:0.5}, "-=0.5")
-    
+    .to(speed, {duration:4, num:"+=65", roundProps:"num", onUpdate:speedHandler, ease:"expo"}, "dials")
+    .to(["#speed-1", "#speed-2", "#speed-3", "#speed-4", "#speed-5", "#speed-6"], {scale:1, stagger:{amount:3.5}, ease:"power1.out"}, "dials")
+    .to("#speed-7", {scale:0.8, duration:0.5 , ease:"power1.out"}, "dials+=3.5")
+    .to(rpm, {duration:4, num:"+=3.4", roundProps:"num", onUpdate:rpmHandler, ease:"expo"}, "dials")
+    .to(["#rpm-1", "#rpm-2", "#rpm-3"], {scale:1, stagger:{amount:4}, ease:"power1.out"}, "dials")
+    //.to("#rpm-4", {scale:0.8, duration:1, ease:"power1.out"}, "dials+=3")
     ;
     return tl;
   }
 
 
-  // function percentHandler(){
-  
-  //   PERC_num.textContent=PERC.num;
-  
-  // }
+function speedHandler(){
+  speed_num.textContent=speed.num;
+}
+function rpmHandler(){
+  rpm_num.textContent=rpm.num;
+}
+function milesHandler(){
+  mi_num.textContent=mi.num;
+}
 
 
 
