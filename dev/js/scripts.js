@@ -155,6 +155,17 @@ ready(() => {
     .to("#f-forward", {transformOrigin:"center center", alpha:0.8, fill:"#63e3fa", yoyo:true, duration:1, repeat:1}, "barbieGirl")
     .to("#beautiful-girls", {transformOrigin:"center left", scale:0, duration:0.5}, "barbieGirl")
     .to("#barbie-girl", {scale:1, duration:0.5}, "barbieGirl+=0.5")
+    .to("#selection-button", {
+      duration:2,
+      motionPath:{
+        path:"#prndl-arc",
+        align:"#prndl-arc",
+        alignOrigin:[0.5, 0.5]
+      },
+      ease:"power4.out"
+    }, "gear-change")
+    .to("#P", {scale:1, fill:"#63e3fa", ease:"back.out", duration:0.5}, "gear-change")
+    .to("#D", {scale:1.5, fill:"#ffcce7", ease:"back.out", duration:0.5}, "-=0.5")
     
     ;
     return tl;
