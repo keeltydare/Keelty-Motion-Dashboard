@@ -184,7 +184,7 @@ let mainTL = gsap.timeline({id:"main"});
       tl.to(speed, {duration:4, num:"+=65", roundProps:"num", onUpdate:speedHandler, ease:"power1.out"}, "dials")
       .to(["#speed-1", "#speed-2", "#speed-3", "#speed-4", "#speed-5", "#speed-6"], {scale:1, stagger:{amount:3.5}, ease:"power1.out"}, "dials")
       .to("#speed-7", {scale:0.8, duration:0.3, ease:"power1.out"}, "dials+=3.7")
-      .to(rpm, {duration:2, num:"+=3.4", roundProps:"num", onUpdate:rpmHandler, ease:"power1.out"}, "dials")
+      .to(rpm, {duration:2, num:"+=3", roundProps:"num", onUpdate:rpmHandler, ease:"power1.out"}, "dials")
       .to(["#rpm-1", "#rpm-2", "#rpm-3"], {scale:1, stagger:{amount:2}, ease:"power1.out"}, "dials")
       //.to("#rpm-4", {scale:0.8, duration:1, ease:"power1.out"}, "dials+=3")
       ;
