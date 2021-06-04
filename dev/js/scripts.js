@@ -147,15 +147,15 @@ let mainTL = gsap.timeline({id:"main"});
     //*********** musicTL ****************
     function musicTL(){
       let tl = gsap.timeline();
-      tl.to("#f-forward", {transformOrigin:"center center", fill:"#63e3fa", yoyo:true, duration:1, repeat:1, scale:0.8}, "glamorous")
-      .to("#glamorous", {transformOrigin:"center left", scale:0, duration:0.5}, "glamorous")
-      .to("#promiscuous", {scale:1, duration:0.5}, "glamorous+=0.5")
-      .to("#f-forward", {transformOrigin:"center center", fill:"#63e3fa", yoyo:true, duration:1, repeat:1, scale:0.8}, "beautifulGirls")
-      .to("#promiscuous", {transformOrigin:"center left", scale:0, duration:0.5}, "beautifulGirls")
-      .to("#beautiful-girls", {scale:1, duration:0.5}, "beautifulGirls+=0.5")
-      .to("#f-forward", {transformOrigin:"center center", fill:"#63e3fa", yoyo:true, duration:1, repeat:1, scale:0.8}, "barbieGirl")
-      .to("#beautiful-girls", {transformOrigin:"center left", scale:0, duration:0.5}, "barbieGirl")
-      .to("#barbie-girl", {scale:1, duration:0.5}, "barbieGirl+=0.5")
+      tl.to("#f-forward", {transformOrigin:"center center", fill:"#63e3fa", yoyo:true, duration:0.75, repeat:1}, "glamorous")
+      .to("#glamorous", {transformOrigin:"center left", scale:0, duration:0.75}, "glamorous")
+      .to("#promiscuous", {scale:1, duration:0.75}, "glamorous+=0.5")
+      .to("#f-forward", {transformOrigin:"center center", fill:"#63e3fa", yoyo:true, duration:0.75, repeat:1}, "beautifulGirls")
+      .to("#promiscuous", {transformOrigin:"center left", scale:0, duration:0.75}, "beautifulGirls")
+      .to("#beautiful-girls", {scale:1, duration:0.75}, "beautifulGirls+=0.5")
+      .to("#f-forward", {transformOrigin:"center center", fill:"#63e3fa", yoyo:true, duration:0.75, repeat:1}, "barbieGirl")
+      .to("#beautiful-girls", {transformOrigin:"center left", scale:0, duration:0.75}, "barbieGirl")
+      .to("#barbie-girl", {scale:1, duration:0.75}, "barbieGirl+=0.5")
       ;
       return tl;
     }
@@ -164,7 +164,7 @@ let mainTL = gsap.timeline({id:"main"});
   function gearChangeTL(){
     let tl = gsap.timeline();
     tl.to("#selection-button", {
-      duration:2,
+      duration:4,
       motionPath:{
         path:"#prndl-arc",
         align:"#prndl-arc",
@@ -173,7 +173,9 @@ let mainTL = gsap.timeline({id:"main"});
       ease:"power4.out"
     }, "gear-change")
     .to("#P", {scale:1, fill:"#63e3fa", ease:"back.out", duration:0.5}, "gear-change")
-    .to("#D", {scale:1.5, fill:"#ffcce7", ease:"back.out", duration:0.5}, "-=0.75")
+    .to("#R", {fill:"#ffcce7", ease:"back.out", yoyo:true, duration:0.13, repeat:1}, "gear-change+=0.2")
+    .to("#N", {fill:"#ffcce7", ease:"back.out", yoyo:true, duration:0.13, repeat:1}, "gear-change+=0.75")
+    .to("#D", {scale:1.5, fill:"#ffcce7", ease:"back.out", duration:0.5}, "-=2")
     ;
     return tl;
   }
@@ -186,7 +188,6 @@ let mainTL = gsap.timeline({id:"main"});
       .to("#speed-7", {scale:0.8, duration:0.3, ease:"power1.out"}, "dials+=3.7")
       .to(rpm, {duration:2, num:"+=3", roundProps:"num", onUpdate:rpmHandler, ease:"power1.out"}, "dials")
       .to(["#rpm-1", "#rpm-2", "#rpm-3"], {scale:1, stagger:{amount:2}, ease:"power1.out"}, "dials")
-      //.to("#rpm-4", {scale:0.8, duration:1, ease:"power1.out"}, "dials+=3")
       ;
       return tl;
     }
